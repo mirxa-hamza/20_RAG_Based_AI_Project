@@ -1,14 +1,38 @@
 import requests
+import os
+import json
+import pandas as pd
 
-def create_embedding(text):
-    r = requests.post("http://localhost:11434/api/embeddings",json={
+def create_embedding(text_list):
+    # https://github.com/ollama/ollama/blob/main/docs/api.md#generate-embeddings
+    r = requests.post("http://localhost:11434/api/embed",json={
         "model":"bge-m3",
-        "prompt":text
+        "input":text_list
     })
 
-    embedding = r.json()['embedding']
+    embedding = r.json()['embeddings']
     return embedding
 
-a = create_embedding("Cat Sat On The Mat")
-print(a[0:5])
+# a = create_embedding("Cat Sat On The Mat")
+# print(a[0:5])
 
+jsons = os.listdir("jsons")
+my_dicts = []
+chunk_id = 0
+
+for json_file in jsons:
+    with open (f"jsons/{json_file}") as f:
+        contant = json.load(f)
+    print(f"Creating Embeddings for {json_file}")
+    embeddings = create_embedding([c["text"] for c in contant["chunks"]])
+
+    for i,chunk in enumerate (contant["chunks"]):
+        chunk['chunk_id'] = chunk_id
+        chunk['embedding'] = embeddings[i]
+        chunk_id+=1
+        my_dicts.append(chunk)
+
+# print(my_dicts)
+
+df = pd.DataFrame.from_records(my_dicts)
+print(df)
