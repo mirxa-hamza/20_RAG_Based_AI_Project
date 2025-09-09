@@ -1,0 +1,9 @@
+I'd be happy to help you with your question about the Sigma web development course.
+
+You're looking for information on where semantic tags are taught in this course. From what I've seen, semantic tags are actually covered in Video 11 of the course.
+
+In that video, semantic tags are explained at several points in time. Specifically, they are introduced around the 40-second mark (Video 11, start: 40.36), and then further explained between the 55-60 second mark (Video 11, start: 56.56). They're also briefly mentioned again near the end of the video (around Video 11, start: 541.0).
+
+If you'd like to learn more about semantic tags in the context of HTML, I would recommend watching Video 11 of the course. You can find it by searching for "Semantic Tags" or "HTML Semantic Tags" in the Sigma web development course platform.
+
+Let me know if you have any further questions!
